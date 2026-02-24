@@ -1,17 +1,24 @@
 import os
 
 users = []
+usersAdmin = ['admin']
 
 loggedAs = False
+loggedUser = None
 
 def clearCMD():
   os.system('cls' if os.name == 'nt' else 'clear')
 
 def getUsers():
   global loggedAs
+  global loggedUser
 
   if not loggedAs:
     print('❌ Você precista estar logado par realizar essa ação.')
+    return False
+  
+  if not isAdmin(loggedUser):
+    print('❌ Você precisa ser um admin para realizar essa ação.')
     return False
 
   if (not users):
@@ -24,6 +31,9 @@ def getUsers():
       print(f'Senha: {user["password"]}')
       print(f'Email: {user["email"]}')
       print('================================')
+
+def isAdmin(username):
+  return username in usersAdmin
 
 def existingUser(username):
   for user in users:
@@ -58,6 +68,8 @@ def registerUser ():
 
 def loginUser():
   global loggedAs
+  global loggedUser
+
   username = input('Digite o nome de usúario: ') 
   password = input('Digite uma senha: ') 
   
@@ -67,6 +79,7 @@ def loginUser():
               clearCMD()
               print('✅ Login efetuado com sucesso.')
               loggedAs = True
+              loggedUser = user['username']
               return True
           else:
               print('❌ Senha incorreta.')
@@ -91,6 +104,31 @@ def removeUser():
       return
   print('❌ Usuário não encontrado.')
   
+def addAdmin():
+  global loggedAs
+  global loggedUser
+
+  if not loggedAs:
+    print('❌ Você precista estar logado par realizar essa ação.')
+    return False
+
+  if not isAdmin(loggedUser):
+    print('❌ Você precisa ser um admin para realizar essa ação.')
+    return False
+
+  username = input('Digite o nome de usúario para adicionar como admin: ') 
+
+  if not existingUser(username):
+    print('❌ Usuário não encontrado.')
+    return False
+
+  if isAdmin(username):  
+    print('❌ Usuário já é admin.')
+    return False
+
+  usersAdmin.append(username)
+  print('✅ Usuário adicionado como admin com sucesso.')
+
 def menu():
   
   print('================================')
@@ -98,7 +136,8 @@ def menu():
   print('2. Listar Usuários')
   print('3. Login')
   print('4. Remover Usuários')
-  print('5. Sair')
+  print('5. Adicionar Admin')
+  print('6. Sair')
   print('================================')
   try:
     option = int(input('Escolha uma opção do menu acima: '))
@@ -121,6 +160,9 @@ def menu():
     removeUser()
     return
   elif option == 5:
+    addAdmin()
+    return
+  elif option == 6:
     logout()
     clearCMD()
     print('✅ Você saiu do sistema com sucesso.')
