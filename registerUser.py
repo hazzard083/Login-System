@@ -90,11 +90,16 @@ def loginUser():
   
 def removeUser():
   global loggedAs
+  global loggedUser
 
   if not loggedAs:
     print('❌ Você precista estar logado par realizar essa ação.')
     return False
   
+  if not isAdmin(loggedUser):
+    print('❌ Você precisa ser um admin para realizar essa ação.')
+    return False
+
   username = input('Digite o nome de usúario que deseja remover: ') 
 
   for i, user in enumerate(users):
