@@ -11,30 +11,31 @@ Projeto criado para fins de aprendizado e portfólio.
 
 ## 🚀 Funcionalidades
 
--   Cadastro de usuários\
--   Login no sistema\
--   Listagem de usuários (restrito a usuários logados)\
--   Remoção de usuários (restrito a usuários logados)\
--   Logout\
+-   Cadastro de usuários
+-   Login no sistema
+-   Listagem de usuários (restrito a usuários administradores)
+-   Remoção de usuários (restrito a usuários administradores)
+-   Logout
+-   Verificação Admin
 -   Limpeza automática do terminal
 
 ------------------------------------------------------------------------
 
 ## 🧠 Conceitos Utilizados
 
--   Variáveis globais\
--   Funções\
--   Listas e dicionários\
--   Estrutura if/else\
--   Laços de repetição\
--   Tratamento de erros\
+-   Variáveis globais
+-   Funções
+-   Listas e dicionários
+-   Estrutura if else
+-   Laços de repetição
+-   Tratamento de erros
 -   Interação via input()
 
 ------------------------------------------------------------------------
 
 ## 🛠️ Tecnologias
 
--   Python 3\
+-   Python 3
 -   Terminal / CMD / PowerShell
 
 ------------------------------------------------------------------------
@@ -71,7 +72,8 @@ Verifique com:
     2. Listar Usuários
     3. Login
     4. Remover Usuários
-    5. Sair
+    5. Adicionar Admin
+    6. Sair
 
 ------------------------------------------------------------------------
 
@@ -79,6 +81,7 @@ Verifique com:
 
 -   Algumas funções exigem login
 -   Apenas usuários cadastrados podem acessar
+-   Para listar os usúarios e adicionar novos administradores tem que ser com o user ```username: admin, password: admin```
 
 ------------------------------------------------------------------------
 
